@@ -45,9 +45,9 @@ class LockerFragment : Fragment() {
 
 
     private fun initView(){
-        val jwt = getJwt()
+        val userId = getUserIdx(requireContext())
 
-        if(jwt == 0){
+        if(userId == 0){
             binding.lockerLoginTv.text = "로그인"
             binding.lockerLoginTv.setOnClickListener{
                 startActivity(Intent(activity,LoginActivity::class.java))
@@ -63,11 +63,6 @@ class LockerFragment : Fragment() {
         }
     }
 
-    private fun getJwt() : Int {
-        val spf = activity?.getSharedPreferences("auth", AppCompatActivity.MODE_PRIVATE)
-
-        return spf!!.getInt("jwt",0)
-    }
 
     private fun logout() {
         val spf = activity?.getSharedPreferences("auth", AppCompatActivity.MODE_PRIVATE)
